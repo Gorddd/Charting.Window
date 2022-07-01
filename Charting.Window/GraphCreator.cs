@@ -4,16 +4,19 @@ namespace Charting.Window;
 
 public class GraphCreator
 {
-    public GraphCreator()
+    private Func<double, double> func;
+
+    public GraphCreator(Func<double, double> func)
     {
+        this.func = func;
     }
 
-    public async Task CreateGraph()
+    public async Task Start(string? title = null)
     {
         await Task.Run(() => 
         {
             Application.EnableVisualStyles();
-            Application.Run(new GraphWindow());
+            Application.Run(new GraphWindow(func, title));
         });
     }
 }

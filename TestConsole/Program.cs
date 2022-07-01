@@ -2,15 +2,9 @@
 
 
 
-var graph = new GraphCreator();
-graph.CreateGraph();
+var graph = new GraphCreator(x => x * x);
+graph.Start();
 
 
-var newGraph = new GraphCreator();
-newGraph.CreateGraph();
-
-Console.ReadKey();
-
-
-
-
+var newGraph = new GraphCreator(x => Math.Sqrt(x));
+await newGraph.Start();
