@@ -1,10 +1,6 @@
 ﻿using Charting.Window;
 
+GraphCreator.Start(x => x * x, "y = x^2");
+GraphCreator.Start(x => Math.Cos(x), "y = cos(x)");
 
-
-var graph = new GraphCreator(x => x * x);
-graph.Start();
-
-
-var newGraph = new GraphCreator(x => Math.Sqrt(x));
-await newGraph.Start();
+Console.ReadKey();

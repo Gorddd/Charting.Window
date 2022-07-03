@@ -2,7 +2,7 @@
 using OxyPlot;
 using OxyPlot.Series;
 
-namespace Charting.Window.Core;
+namespace Charting.Window.Graphics;
 
 class GraphWindow : Form
 {
@@ -13,7 +13,8 @@ class GraphWindow : Form
         InitializeComponent();
 
         var model = new PlotModel { Title = title };
-        model.Series.Add(new FunctionSeries(func, 0, 10, 0.01));
+        model.Series.Add(new FunctionSeries(func, -100, 100, 0.01));
+        model.Series.Add(new FunctionSeries(x => 2 * x, -100, 100, 0.1));
         plotView.Model = model;
     }
 
