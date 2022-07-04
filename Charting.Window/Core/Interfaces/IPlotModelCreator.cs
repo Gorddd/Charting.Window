@@ -1,7 +1,9 @@
-﻿namespace Charting.Window.Core;
+﻿using OxyPlot;
+
+namespace Charting.Window.Core;
 
 public interface IPlotModelCreator
 {
-
+    PlotModel CreatePlotModel();
 }
 
