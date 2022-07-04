@@ -2,7 +2,7 @@
 
 namespace Charting.Window;
 
-public class GraphCreator
+public class GraphCreator : GraphMaker
 {
     public GraphCreator()
     {
