@@ -7,10 +7,14 @@ class WinformsWindow : Form, IGraphics
 {
     private OxyPlot.WindowsForms.PlotView plotView = new OxyPlot.WindowsForms.PlotView();
 
-    public WinformsWindow(PlotModel plotModel)
+    public PlotModel PlotModel 
     {
-        plotView.Model = plotModel;
+        get => plotView.Model; 
+        set => plotView.Model = value; 
+    }
 
+    public WinformsWindow()
+    {
         InitializeComponent();
     }
 
