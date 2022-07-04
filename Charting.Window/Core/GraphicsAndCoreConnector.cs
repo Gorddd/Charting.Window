@@ -13,10 +13,10 @@ class GraphicsAndCoreConnector : IConnector
     public bool IsActivated { get; set; }
 
     //Тут наверное сделать чтобы принимал IEnumerable<ISeriesItemCreator> чтобы все графики создать
-    public GraphicsAndCoreConnector(IGraphics graphics, IPlotModelCreator plotModel, ISeriesItemCreator seriesItem)
+    public GraphicsAndCoreConnector(IGraphics graphics, IPlotModelCreator plotModelCreator, ISeriesItemCreator seriesItemCreator)
     {
-        this.plotModelCreator = plotModel;
-        this.seriesItemCreator = seriesItem;
+        this.plotModelCreator = plotModelCreator;
+        this.seriesItemCreator = seriesItemCreator;
         this.graphics = graphics;
 
         BuildForm();

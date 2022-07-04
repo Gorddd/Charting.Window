@@ -1,6 +1,9 @@
-﻿namespace Charting.Window;
+﻿using Charting.Window.Graphics;
+using Charting.Window.Graphics.WindowsForms;
 
-public abstract class GraphMaker
+namespace Charting.Window;
+
+public class GraphMaker
 {
     //МБ ЗДЕСЬ депенденси инжекшон прописывать для всех сервисов
 }

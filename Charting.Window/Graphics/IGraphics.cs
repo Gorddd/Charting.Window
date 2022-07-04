@@ -2,7 +2,7 @@
 
 namespace Charting.Window.Graphics;
 
-interface IGraphics
+public interface IGraphics
 {
     PlotModel PlotModel { get; set; }
     void Start();

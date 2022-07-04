@@ -8,6 +8,8 @@ namespace Charting.Window.Core
 {
     public interface IConnector
     {
+        Task StartCharting();
+        void StopCharting();
         bool IsActivated { get; set; }
     }
 }

@@ -1,10 +1,17 @@
-﻿using Charting.Window.Core.Environment;
+﻿using Charting.Window.Core;
+using Charting.Window.Core.Environment;
 
 namespace Charting.Window.Environment;
 
 public class DesignBuilder
 {
-    private WindowOptionsBase optionsBase = new WindowOptions();
+    private WindowOptionsBase options = new WindowOptions();
 
-    public void SetTitle(string title) => optionsBase.Title = title;
+    public DesignBuilder SetTitle(string title) 
+    {
+        options.Title = title;
+        return this;
+    }
+
+    public IPlotModelCreator Build() => options;
 }
