@@ -30,6 +30,8 @@ public class GraphBuilder
             case InterpolationAlgorithm.ChordalCatmullRomSpline:
                 graphOptions.InterpolationAlgorithm = InterpolationAlgorithms.ChordalCatmullRomSpline;
                 break;
+            default:
+                throw new ArgumentException();
         }
         return this;
     }

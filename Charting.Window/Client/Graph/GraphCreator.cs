@@ -9,11 +9,11 @@ public class GraphCreator : GraphMaker
     private IConnector connector;
     public bool IsActive => connector.IsActive;
 
-    public GraphCreator(GraphBuilder graphBuilders, DesignBuilder? designBuilder = null)
+    public GraphCreator(GraphBuilder graphBuilder, DesignBuilder? designBuilder = null)
     {
-        var seriesItemCreators = BuildersToSeriesCreators(new[] { graphBuilders });
+        var seriesItemCreators = BuildersToSeriesCreators(new[] { graphBuilder });
         connector = new GraphicsAndCoreConnector(
-            new WinformsWindow(), 
+            new WinformsWindow(),
             designBuilder?.Build() ?? new DesignBuilder().Build(),
             seriesItemCreators);
     }
@@ -21,8 +21,8 @@ public class GraphCreator : GraphMaker
     {
         var seriesItemCreators = BuildersToSeriesCreators(graphBuilders);
         connector = new GraphicsAndCoreConnector(
-            new WinformsWindow(), 
-            designBuilder?.Build() ?? new DesignBuilder().Build(), 
+            new WinformsWindow(),
+            designBuilder?.Build() ?? new DesignBuilder().Build(),
             seriesItemCreators);
     }
 
@@ -46,11 +46,27 @@ public class GraphCreator : GraphMaker
         var designBuilder = new DesignBuilder().SetTitle(title);
 
         var session = new GraphicsAndCoreConnector(
-            new WinformsWindow(), 
-            designBuilder.Build(), 
+            new WinformsWindow(),
+            designBuilder.Build(),
             BuildersToSeriesCreators(new[] { graphBuilder }));
 
         await session.StartCharting();
     }
-}
+    public static async Task Start(IEnumerable<Point> points,
+        InterpolationAlgorithm? interpolationAlgorithm = null,
+        string? title = null)
+    {
+        var graphBuilder = new GraphBuilder().SetPoints(points).SetName(title);
+        if (interpolationAlgorithm != null)
+            graphBuilder.UseInterpolationAlgorithm((InterpolationAlgorithm)interpolationAlgorithm);
+        var designBuilder = new DesignBuilder().SetTitle(title);
 
+        var session = new GraphicsAndCoreConnector(
+            new WinformsWindow(),
+            designBuilder.Build(),
+            BuildersToSeriesCreators(new[] { graphBuilder })
+            );
+
+        await session.StartCharting();
+    }
+}
