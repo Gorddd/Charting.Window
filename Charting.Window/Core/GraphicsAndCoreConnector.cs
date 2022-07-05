@@ -12,7 +12,6 @@ class GraphicsAndCoreConnector : IConnector
 
     public bool IsActive { get; set; }
 
-    //Тут наверное сделать чтобы принимал IEnumerable<ISeriesItemCreator> чтобы все графики создать
     public GraphicsAndCoreConnector(IGraphics graphics, IPlotModelCreator plotModelCreator, IEnumerable<ISeriesItemCreator> seriesItemCreators)
     {
         this.plotModelCreator = plotModelCreator;
