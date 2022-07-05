@@ -7,15 +7,33 @@ namespace Charting.Window;
 public class GraphCreator : GraphMaker
 {
     private IConnector connector;
-    public bool IsActivated => connector.IsActivated;
+    public bool IsActive => connector.IsActive;
 
-    public GraphCreator(GraphBuilder graphBuilder, DesignBuilder designBuilder)
+    public GraphCreator(GraphBuilder graphBuilders, DesignBuilder? designBuilder = null)
     {
-        connector = new GraphicsAndCoreConnector(new WinformsWindow(), designBuilder.Build(), graphBuilder.Build());
+        var seriesItemCreators = BuildersToSeriesCreators(new[] { graphBuilders });
+        connector = new GraphicsAndCoreConnector(
+            new WinformsWindow(), 
+            designBuilder?.Build() ?? new DesignBuilder().Build(),
+            seriesItemCreators);
     }
-    public GraphCreator(GraphBuilder graphBuilder)
+    public GraphCreator(IEnumerable<GraphBuilder> graphBuilders, DesignBuilder? designBuilder = null)
     {
-        connector = new GraphicsAndCoreConnector(new WinformsWindow(), new DesignBuilder().Build(), graphBuilder.Build());
+        var seriesItemCreators = BuildersToSeriesCreators(graphBuilders);
+        connector = new GraphicsAndCoreConnector(
+            new WinformsWindow(), 
+            designBuilder?.Build() ?? new DesignBuilder().Build(), 
+            seriesItemCreators);
+    }
+
+    private static IEnumerable<ISeriesItemCreator> BuildersToSeriesCreators(IEnumerable<GraphBuilder> graphBuilders)
+    {
+        var seriesItemCreators = new List<ISeriesItemCreator>();
+
+        foreach (var graphBuilder in graphBuilders)
+            seriesItemCreators.Add(graphBuilder.Build());
+
+        return seriesItemCreators;
     }
 
     public async Task Start() => await connector.StartCharting();
@@ -26,7 +44,11 @@ public class GraphCreator : GraphMaker
     {
         var graphBuilder = new GraphBuilder().SetFunction(func).SetName(title);
         var designBuilder = new DesignBuilder().SetTitle(title);
-        var session = new GraphicsAndCoreConnector(new WinformsWindow(), designBuilder.Build(), graphBuilder.Build());
+
+        var session = new GraphicsAndCoreConnector(
+            new WinformsWindow(), 
+            designBuilder.Build(), 
+            BuildersToSeriesCreators(new[] { graphBuilder }));
 
         await session.StartCharting();
     }

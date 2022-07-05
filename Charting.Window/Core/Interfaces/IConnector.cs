@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Charting.Window.Core;
 
-namespace Charting.Window.Core
+public interface IConnector
 {
-    public interface IConnector
-    {
-        Task StartCharting();
-        void StopCharting();
-        bool IsActivated { get; set; }
-    }
+    Task StartCharting();
+    void StopCharting();
+    bool IsActive { get; set; }
 }

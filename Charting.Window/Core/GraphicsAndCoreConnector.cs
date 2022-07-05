@@ -8,15 +8,15 @@ class GraphicsAndCoreConnector : IConnector
 {
     IGraphics graphics;
     IPlotModelCreator plotModelCreator;
-    ISeriesItemCreator seriesItemCreator;
+    IEnumerable<ISeriesItemCreator> seriesItemCreators;
 
-    public bool IsActivated { get; set; }
+    public bool IsActive { get; set; }
 
     //Тут наверное сделать чтобы принимал IEnumerable<ISeriesItemCreator> чтобы все графики создать
-    public GraphicsAndCoreConnector(IGraphics graphics, IPlotModelCreator plotModelCreator, ISeriesItemCreator seriesItemCreator)
+    public GraphicsAndCoreConnector(IGraphics graphics, IPlotModelCreator plotModelCreator, IEnumerable<ISeriesItemCreator> seriesItemCreators)
     {
         this.plotModelCreator = plotModelCreator;
-        this.seriesItemCreator = seriesItemCreator;
+        this.seriesItemCreators = seriesItemCreators;
         this.graphics = graphics;
 
         BuildForm();
@@ -25,19 +25,23 @@ class GraphicsAndCoreConnector : IConnector
     private void BuildForm()
     {
         var plotModel = plotModelCreator.CreatePlotModel();
-        plotModel.Series.Add(seriesItemCreator.CreateSeries());
+
+        foreach(var seriesItemCreator in seriesItemCreators)
+            plotModel.Series.Add(seriesItemCreator.CreateSeries());
+
         graphics.PlotModel = plotModel;
     }
 
     public async Task StartCharting()
     {
-        IsActivated = true;
+        IsActive = true;
         await Task.Run(() => graphics.Start());
+        graphics.Start();
     }
 
     public void StopCharting()
     {
-        IsActivated = false;
+        IsActive = false;
         graphics.Stop();
     }
 }

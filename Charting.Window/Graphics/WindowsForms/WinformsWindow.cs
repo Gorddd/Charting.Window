@@ -19,7 +19,7 @@ class WinformsWindow : Form, IGraphics
     }
 
     public void Start() => ShowDialog();
-    public void Stop() => Close();
+    public void Stop() => Hide();
 
 
     private void InitializeComponent()
