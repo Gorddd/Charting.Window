@@ -6,14 +6,19 @@ class GraphOptions : GraphOptionsBase
 {
     public override Series CreateSeries()
     {
-        FunctionSeries series;
+        FunctionSeries series = new FunctionSeries();
 
-        if (functionSeries != null)
-            series = functionSeries;
-        else if (func == null)
+        if (func == null && Points == null)
             throw new ArgumentNullException("Func hasn't defined");
-        else
-            series = new FunctionSeries(func, X0, X1, Dx, Name);
+
+        if (func != null)
+            series = new FunctionSeries(func, X0, X1, Dx);
+        if (Points != null)
+            foreach (var point in Points)
+                series.Points.Add(point.ToDataPoint());
+
+        series.Title = Name;
+        series.InterpolationAlgorithm = InterpolationAlgorithm;
 
         return series;
     }

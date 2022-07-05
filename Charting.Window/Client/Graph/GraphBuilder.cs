@@ -1,6 +1,7 @@
 ﻿using Charting.Window.Core;
 using Charting.Window.Core.Graph;
 using OxyPlot.Series;
+using OxyPlot;
 
 namespace Charting.Window;
 
@@ -8,9 +9,28 @@ public class GraphBuilder
 {
     private GraphOptionsBase graphOptions = new GraphOptions();
 
-    public GraphBuilder UseFunctionSeries(FunctionSeries functionSeries)
+    public GraphBuilder SetPoints(IEnumerable<Point> points)
     {
-        graphOptions.functionSeries = functionSeries;
+        graphOptions.Points = points;
+        return this;
+    }
+    public GraphBuilder UseInterpolationAlgorithm(InterpolationAlgorithm interpolationAlgorithm)
+    {
+        switch (interpolationAlgorithm)
+        {
+            case InterpolationAlgorithm.CanonicalSpline:
+                graphOptions.InterpolationAlgorithm = InterpolationAlgorithms.CanonicalSpline;
+                break;
+            case InterpolationAlgorithm.CatmullRomSpline:
+                graphOptions.InterpolationAlgorithm = InterpolationAlgorithms.CatmullRomSpline;
+                break;
+            case InterpolationAlgorithm.UniformCatmullRomSpline:
+                graphOptions.InterpolationAlgorithm = InterpolationAlgorithms.UniformCatmullRomSpline;
+                break;
+            case InterpolationAlgorithm.ChordalCatmullRomSpline:
+                graphOptions.InterpolationAlgorithm = InterpolationAlgorithms.ChordalCatmullRomSpline;
+                break;
+        }
         return this;
     }
     public GraphBuilder SetFunction(Func<double, double> func)
@@ -36,4 +56,3 @@ public class GraphBuilder
 
     public ISeriesItemCreator Build() => graphOptions;
 }
-
