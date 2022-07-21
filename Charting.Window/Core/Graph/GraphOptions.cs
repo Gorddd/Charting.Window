@@ -14,13 +14,27 @@ class GraphOptions : GraphOptionsBase
         if (func != null)
             series = new FunctionSeries(func, X0, X1, Dx);
         if (Points != null)
-            foreach (var point in Points)
+            while (Points.Count > 0)
+            {
+                var point = Points.Dequeue();
                 series.Points.Add(new OxyPlot.DataPoint(point.x, point.y));
+            }
 
         series.Title = Name;
         series.InterpolationAlgorithm = InterpolationAlgorithm;
 
         return series;
     }
-}
 
+    public override void UpdateSeries(Series series)
+    {
+        var funSeries = series as FunctionSeries ?? 
+            throw new ArgumentNullException("the Series param in UpdateSeries() is not FunctionSeries");
+
+        while (Points.Count > 0)
+        {
+            var point = Points.Dequeue();
+            funSeries.Points.Add(new OxyPlot.DataPoint(point.x, point.y));
+        }
+    }
+}

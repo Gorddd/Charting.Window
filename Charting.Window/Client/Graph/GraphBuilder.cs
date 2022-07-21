@@ -10,14 +10,18 @@ public class GraphBuilder
 {
     private GraphOptionsBase graphOptions = new GraphOptions();
 
+    public void AddPoint((double x, double y) point) =>
+        graphOptions.Points.Enqueue(point);
+
+
     public GraphBuilder SetPoints(IEnumerable<(double x, double y)> points)
     {
-        graphOptions.Points = points;
+        graphOptions.Points = new Queue<(double x, double y)>(points);
         return this;
     }
     public GraphBuilder SetPoints(IEnumerable<Tuple<double, double>> points)
     {
-        graphOptions.Points = points.ToIEnumerableTuple();
+        graphOptions.Points = new Queue<(double x, double y)>(points.ToIEnumerableTuple());
         return this;
     }
     public GraphBuilder UseInterpolationAlgorithm(InterpolationAlgorithm interpolationAlgorithm)

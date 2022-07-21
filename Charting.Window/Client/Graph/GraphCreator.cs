@@ -38,6 +38,7 @@ public class GraphCreator : GraphMaker
 
     public async Task Start() => await connector.StartCharting();
     public void Stop() => connector.StopCharting();
+    public void Update() => connector.Update();
 
 
     public static async Task Start(Func<double, double> func, string? title = null)

@@ -6,13 +6,18 @@ namespace Charting.Window.Core;
 
 class GraphicsAndCoreConnector : IConnector
 {
+    private IEnumerable<OxyPlot.Series.Series> series;
+
     IGraphics graphics;
     IPlotModelCreator plotModelCreator;
     IEnumerable<ISeriesItemCreator> seriesItemCreators;
 
     public bool IsActive { get; set; }
 
-    public GraphicsAndCoreConnector(IGraphics graphics, IPlotModelCreator plotModelCreator, IEnumerable<ISeriesItemCreator> seriesItemCreators)
+    public GraphicsAndCoreConnector(
+        IGraphics graphics,
+        IPlotModelCreator plotModelCreator,
+        IEnumerable<ISeriesItemCreator> seriesItemCreators)
     {
         this.plotModelCreator = plotModelCreator;
         this.seriesItemCreators = seriesItemCreators;
@@ -25,8 +30,9 @@ class GraphicsAndCoreConnector : IConnector
     {
         var plotModel = plotModelCreator.CreatePlotModel();
 
-        foreach(var seriesItemCreator in seriesItemCreators)
+        foreach (var seriesItemCreator in seriesItemCreators)
             plotModel.Series.Add(seriesItemCreator.CreateSeries());
+        series = plotModel.Series;
 
         graphics.PlotModel = plotModel;
     }
@@ -41,5 +47,17 @@ class GraphicsAndCoreConnector : IConnector
     {
         IsActive = false;
         graphics.Stop();
+    }
+
+    public void Update()
+    {
+        var seriesEnumerator = series.GetEnumerator();
+        foreach (var seriesItemCreator in seriesItemCreators)
+        {
+            seriesEnumerator.MoveNext();
+
+            seriesItemCreator.UpdateSeries(seriesEnumerator.Current);
+        }
+        seriesEnumerator.Reset();
     }
 }
