@@ -52,7 +52,7 @@ public class GraphCreator : GraphMaker
 
         await session.StartCharting();
     }
-    public static async Task Start(IEnumerable<Point> points,
+    public static async Task Start(IEnumerable<(double, double)> points,
         InterpolationAlgorithm? interpolationAlgorithm = null,
         string? title = null)
     {

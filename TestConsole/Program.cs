@@ -5,7 +5,7 @@ using Charting.Window.Environment;
 
 GraphCreator.Start(x => x * x, "y = x^2");
 GraphCreator.Start(Math.Sqrt, "Sqrt(x)");
-GraphCreator.Start(new[] { new Point(1, 30), new Point(2, 25), new Point(3, 10) },
+GraphCreator.Start(new[] { (1d, 30d), (2d, 25d), (3d, 10d) },
     InterpolationAlgorithm.CatmullRomSpline,
     "Points");
 
@@ -19,8 +19,8 @@ var graph = new GraphCreator(builder);
 graph.Start();
 
 //point function
-var points = new List<Point>();
-points.Add(new Point(1, 2)); points.Add(new Point(2, 8)); points.Add(new Point(3, 1));
+var points = new List<(double, double)>();
+points.Add((1, 2)); points.Add((2, 8)); points.Add((3, 4));
 var graphPointsBuilder = new GraphBuilder().SetPoints(points).SetName("Points")
     .UseInterpolationAlgorithm(InterpolationAlgorithm.CanonicalSpline);
 new GraphCreator(graphPointsBuilder, new DesignBuilder().SetTitle("Points")).Start();

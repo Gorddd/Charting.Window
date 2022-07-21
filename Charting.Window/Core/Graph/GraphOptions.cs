@@ -15,7 +15,7 @@ class GraphOptions : GraphOptionsBase
             series = new FunctionSeries(func, X0, X1, Dx);
         if (Points != null)
             foreach (var point in Points)
-                series.Points.Add(point.ToDataPoint());
+                series.Points.Add(new OxyPlot.DataPoint(point.x, point.y));
 
         series.Title = Name;
         series.InterpolationAlgorithm = InterpolationAlgorithm;

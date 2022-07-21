@@ -2,6 +2,7 @@
 using Charting.Window.Core.Graph;
 using OxyPlot.Series;
 using OxyPlot;
+using Charting.Window.Core.Extensions;
 
 namespace Charting.Window;
 
@@ -9,9 +10,14 @@ public class GraphBuilder
 {
     private GraphOptionsBase graphOptions = new GraphOptions();
 
-    public GraphBuilder SetPoints(IEnumerable<Point> points)
+    public GraphBuilder SetPoints(IEnumerable<(double x, double y)> points)
     {
         graphOptions.Points = points;
+        return this;
+    }
+    public GraphBuilder SetPoints(IEnumerable<Tuple<double, double>> points)
+    {
+        graphOptions.Points = points.ToIEnumerableTuple();
         return this;
     }
     public GraphBuilder UseInterpolationAlgorithm(InterpolationAlgorithm interpolationAlgorithm)
