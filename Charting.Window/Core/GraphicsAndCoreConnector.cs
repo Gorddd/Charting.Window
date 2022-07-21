@@ -35,7 +35,6 @@ class GraphicsAndCoreConnector : IConnector
     {
         IsActive = true;
         await Task.Run(() => graphics.Start());
-        graphics.Start();
     }
 
     public void StopCharting()
