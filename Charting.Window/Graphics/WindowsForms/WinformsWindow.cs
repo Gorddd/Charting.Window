@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using OxyPlot;
+using OxyPlot.Axes;
 using OxyPlot.Series;
 
 namespace Charting.Window.Graphics.WindowsForms;
@@ -8,10 +9,10 @@ class WinformsWindow : Form, IGraphics
 {
     private OxyPlot.WindowsForms.PlotView plotView = new OxyPlot.WindowsForms.PlotView();
 
-    public PlotModel PlotModel 
+    public PlotModel PlotModel
     {
-        get => plotView.Model; 
-        set => plotView.Model = value; 
+        get => plotView.Model;
+        set => plotView.Model = value;
     }
 
     public WinformsWindow()
@@ -21,7 +22,17 @@ class WinformsWindow : Form, IGraphics
 
     public void Start() => ShowDialog();
     public void Stop() => Hide();
-    public void UpdateArea() => plotView.Refresh();
+    public void UpdateArea()
+    {
+        var lastX = PlotModel.Series
+            .Select(series => (FunctionSeries)series)
+            .Max(series => series.Points.Last().X); //Getting last X coordinate among all graphs
+
+        PlotModel.DefaultXAxis?.Zoom(lastX - 10, lastX); // - 10 это нужно в дизайн билдере им указывать, чтобы мы понимали на скок хотим
+         //еще добавить максимум зума по оси y, также в design buildere
+
+        plotView.Refresh();
+    }
 
 
     private void InitializeComponent()
