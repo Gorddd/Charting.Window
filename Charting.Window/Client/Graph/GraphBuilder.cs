@@ -10,9 +10,13 @@ public class GraphBuilder
 {
     private GraphOptionsBase graphOptions = new GraphOptions();
 
-    public void AddPoint((double x, double y) point) =>
-        graphOptions.Points.Enqueue(point);
+    public void AddPoint((double x, double y) point)
+    {
+        if (graphOptions.Points == null)
+            graphOptions.Points = new Queue<(double x, double y)>();
 
+        graphOptions.Points.Enqueue(point);
+    }
 
     public GraphBuilder SetPoints(IEnumerable<(double x, double y)> points)
     {

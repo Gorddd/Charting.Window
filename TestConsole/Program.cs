@@ -35,13 +35,14 @@ using Charting.Window.Environment;
 ///*========================================================*/
 ///
 
-var graphBuilder = new GraphBuilder().SetPoints(new[] { (-1d, 0d) });
+var graphBuilder = new GraphBuilder();
 var graph = new GraphCreator(graphBuilder);
 graph.Start();
 
+var rand = new Random();
 for (int i = 0; i < 1000; i++)
 {
-    graphBuilder.AddPoint((i, new Random().NextDouble()));
+    graphBuilder.AddPoint((i, 100 * rand.NextDouble()));
     graph.Update();
     
     Thread.Sleep(500);
@@ -49,6 +50,5 @@ for (int i = 0; i < 1000; i++)
 
 
 //исправь подвисания, почему то обновляется только когда сделаешь какое то действие на форме
-//func hasn't defined если начальные данные отсутствуют это надо убрать, чтоб можно было онли добавлять в live
 
 Console.ReadKey();

@@ -8,9 +8,6 @@ class GraphOptions : GraphOptionsBase
     {
         FunctionSeries series = new FunctionSeries();
 
-        if (func == null && Points == null)
-            throw new ArgumentNullException("Func hasn't defined");
-
         if (func != null)
             series = new FunctionSeries(func, X0, X1, Dx);
         if (Points != null)
