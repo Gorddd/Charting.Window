@@ -1,12 +1,12 @@
 ﻿using Charting.Window.Graphics;
-using Charting.Window.Graphics.WindowsForms;
+using OxyPlot.Series;
 using OxyPlot;
 
 namespace Charting.Window.Core;
 
 class GraphicsAndCoreConnector : IConnector
 {
-    private IEnumerable<OxyPlot.Series.Series> series;
+    private IEnumerable<Series> series; //тонкое место, нужно бы как то отдалиться от Series типа, мб какой-то series controller
 
     IGraphics graphics;
     IPlotModelCreator plotModelCreator;
@@ -32,7 +32,7 @@ class GraphicsAndCoreConnector : IConnector
 
         foreach (var seriesItemCreator in seriesItemCreators)
             plotModel.Series.Add(seriesItemCreator.CreateSeries());
-        series = plotModel.Series;
+        series = plotModel.Series; //здесь получаем это тонкое место
 
         graphics.PlotModel = plotModel;
     }
@@ -51,7 +51,7 @@ class GraphicsAndCoreConnector : IConnector
 
     public void Update()
     {
-        var seriesEnumerator = series.GetEnumerator();
+        var seriesEnumerator = series.GetEnumerator();//используем тонкое место
         foreach (var seriesItemCreator in seriesItemCreators)
         {
             seriesEnumerator.MoveNext();
@@ -59,5 +59,7 @@ class GraphicsAndCoreConnector : IConnector
             seriesItemCreator.UpdateSeries(seriesEnumerator.Current);
         }
         seriesEnumerator.Reset();
+
+        graphics.UpdateArea();
     }
 }

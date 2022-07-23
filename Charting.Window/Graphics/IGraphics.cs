@@ -7,4 +7,5 @@ public interface IGraphics
     PlotModel PlotModel { get; set; }
     void Start();
     void Stop();
+    void UpdateArea();
 }

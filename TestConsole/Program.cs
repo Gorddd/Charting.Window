@@ -40,12 +40,12 @@ var graph = new GraphCreator(graphBuilder);
 graph.Start();
 
 var rand = new Random();
-for (int i = 0; i < 1000; i++)
+for (int i = 0; i < 100; i++)
 {
     graphBuilder.AddPoint((i, 100 * rand.NextDouble()));
     graph.Update();
-    
-    Thread.Sleep(500);
+
+    Thread.Sleep(100);
 }
 
 
