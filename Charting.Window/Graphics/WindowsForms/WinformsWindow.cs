@@ -7,13 +7,18 @@ namespace Charting.Window.Graphics.WindowsForms;
 class WinformsWindow : Form, IGraphics
 {
     private OxyPlot.WindowsForms.PlotView plotView = new OxyPlot.WindowsForms.PlotView();
-
     public PlotModel PlotModel
     {
         get => plotView.Model;
         set => plotView.Model = value;
     }
-
+    public Color Color
+    {
+        get => plotView.BackColor;
+        set => plotView.BackColor = value;
+    }
+    public int VisiblePoints { get; set; }
+    
     public WinformsWindow()
     {
         InitializeComponent();
@@ -27,7 +32,7 @@ class WinformsWindow : Form, IGraphics
             .Select(series => (FunctionSeries)series)
             .Max(series => series.Points.Last().X); //Getting last X coordinate among all graphs
 
-        PlotModel.DefaultXAxis?.Zoom(lastX - 10, lastX); // - 10 это нужно в дизайн билдере им указывать, чтобы мы понимали на скок хотим
+        PlotModel.DefaultXAxis?.Zoom(lastX - VisiblePoints, lastX); // - 10 это нужно в дизайн билдере им указывать, чтобы мы понимали на скок хотим
          //еще добавить максимум зума по оси y, также в design buildere
 
         plotView.Refresh();

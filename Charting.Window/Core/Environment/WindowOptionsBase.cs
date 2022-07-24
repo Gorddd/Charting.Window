@@ -19,6 +19,8 @@ abstract class WindowOptionsBase : IWindowOptions
         get => PlotModel.Title;
         set => PlotModel.Title = value;
     }
+    public int VisiblePoints { get; set; } = 10;
+    public Color BackColor { get; set; }
 
 
     public abstract PlotModel CreatePlotModel();

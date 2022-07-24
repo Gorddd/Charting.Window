@@ -10,6 +10,10 @@ class WindowCreator : WindowOptionsBase
     public override IGraphics CreateGraphics()
     {
         //установка настроек окна и тд, та же -10 из UPdate
+
+        graphics.VisiblePoints = VisiblePoints;
+        graphics.Color = BackColor;
+
         return graphics;
     }
 

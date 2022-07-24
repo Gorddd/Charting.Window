@@ -13,6 +13,16 @@ public class DesignBuilder
         options.Title = title;
         return this;
     }
+    public DesignBuilder SetVisiblePoints(int amount)
+    {
+        options.VisiblePoints = amount;
+        return this;
+    }
+    public DesignBuilder SetBackColor(Color color)
+    {
+        options.BackColor = color;
+        return this;
+    }
 
     public IWindowOptions Build() => options;
 }
