@@ -1,11 +1,12 @@
 ﻿using Charting.Window.Core;
 using Charting.Window.Core.Environment;
+using Charting.Window.Graphics.WindowsForms;
 
 namespace Charting.Window.Environment;
 
 public class DesignBuilder
 {
-    private WindowOptionsBase options = new WindowOptions();
+    private WindowOptionsBase options = new WindowCreator(new WinformsWindow());
 
     public DesignBuilder SetTitle(string title) 
     {
@@ -13,5 +14,5 @@ public class DesignBuilder
         return this;
     }
 
-    public IPlotModelCreator Build() => options;
+    public IWindowOptions Build() => options;
 }

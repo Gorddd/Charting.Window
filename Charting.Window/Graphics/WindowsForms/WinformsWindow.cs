@@ -1,6 +1,5 @@
 ﻿using System.Windows.Forms;
 using OxyPlot;
-using OxyPlot.Axes;
 using OxyPlot.Series;
 
 namespace Charting.Window.Graphics.WindowsForms;

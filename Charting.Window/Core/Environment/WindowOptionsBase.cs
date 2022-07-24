@@ -1,10 +1,26 @@
-﻿using OxyPlot;
+﻿using Charting.Window.Graphics;
+using OxyPlot;
 
 namespace Charting.Window.Core.Environment;
 
-abstract class WindowOptionsBase : IPlotModelCreator
+abstract class WindowOptionsBase : IWindowOptions
 {
-    public abstract PlotModel CreatePlotModel();
+    protected IGraphics graphics;
 
-    public string? Title { get; set; }
+    protected WindowOptionsBase(IGraphics graphics)
+    {
+        this.graphics = graphics;
+    }
+
+    public PlotModel PlotModel { get; set; } = new PlotModel();
+
+    public string? Title
+    {
+        get => PlotModel.Title;
+        set => PlotModel.Title = value;
+    }
+
+
+    public abstract PlotModel CreatePlotModel();
+    public abstract IGraphics CreateGraphics();
 }

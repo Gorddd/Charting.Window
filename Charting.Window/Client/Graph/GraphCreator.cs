@@ -13,7 +13,6 @@ public class GraphCreator : GraphMaker
     {
         var seriesItemCreators = BuildersToSeriesCreators(new[] { graphBuilder });
         connector = new GraphicsAndCoreConnector(
-            new WinformsWindow(),
             designBuilder?.Build() ?? new DesignBuilder().Build(),
             seriesItemCreators);
     }
@@ -21,7 +20,6 @@ public class GraphCreator : GraphMaker
     {
         var seriesItemCreators = BuildersToSeriesCreators(graphBuilders);
         connector = new GraphicsAndCoreConnector(
-            new WinformsWindow(),
             designBuilder?.Build() ?? new DesignBuilder().Build(),
             seriesItemCreators);
     }
@@ -47,7 +45,6 @@ public class GraphCreator : GraphMaker
         var designBuilder = new DesignBuilder().SetTitle(title);
 
         var session = new GraphicsAndCoreConnector(
-            new WinformsWindow(),
             designBuilder.Build(),
             BuildersToSeriesCreators(new[] { graphBuilder }));
 
@@ -63,7 +60,6 @@ public class GraphCreator : GraphMaker
         var designBuilder = new DesignBuilder().SetTitle(title);
 
         var session = new GraphicsAndCoreConnector(
-            new WinformsWindow(),
             designBuilder.Build(),
             BuildersToSeriesCreators(new[] { graphBuilder })
             );
