@@ -3,7 +3,7 @@ using OxyPlot;
 
 namespace Charting.Window.Core.Environment;
 
-abstract class WindowOptionsBase : IWindowOptions
+abstract class WindowOptionsBase : IGraphicsCreator
 {
     protected IGraphics graphics;
 
@@ -18,6 +18,5 @@ abstract class WindowOptionsBase : IWindowOptions
     public void AddDesignSetter(IDesignSetter designSetter) =>
         designOptions.Add(designSetter);
 
-    public abstract PlotModel CreatePlotModel();
     public abstract IGraphics CreateGraphics();
 }

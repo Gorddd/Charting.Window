@@ -15,24 +15,23 @@ class GraphicsAndCoreConnector : IConnector
     public bool IsActive { get; set; }
 
     public GraphicsAndCoreConnector(
-        IWindowOptions windowOptions,
+        IGraphicsCreator graphicsCreator,
         IEnumerable<ISeriesItemCreator> seriesItemCreators)
     {
         this.seriesItemCreators = seriesItemCreators;
 
-        BuildForm(windowOptions);
+        BuildForm(graphicsCreator);
     }
 
-    private void BuildForm(IWindowOptions windowOptions)
+    private void BuildForm(IGraphicsCreator graphicsCreator)
     {
-        var plotModel = windowOptions.CreatePlotModel();
+        graphics = graphicsCreator.CreateGraphics();
+
+        var plotModel = graphics.PlotModel;
 
         foreach (var seriesItemCreator in seriesItemCreators)
             plotModel.Series.Add(seriesItemCreator.CreateSeries());
         series = plotModel.Series; //здесь получаем это тонкое место
-
-        graphics = windowOptions.CreateGraphics();
-        graphics.PlotModel = plotModel;
     }
 
     public async Task StartCharting()

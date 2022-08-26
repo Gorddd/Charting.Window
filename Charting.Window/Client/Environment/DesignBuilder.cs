@@ -1,5 +1,6 @@
 ﻿using Charting.Window.Core;
 using Charting.Window.Core.Environment;
+using Charting.Window.Graphics;
 using Charting.Window.Graphics.WindowsForms;
 
 namespace Charting.Window.Environment;
@@ -24,5 +25,5 @@ public class DesignBuilder
         return this;
     }
 
-    public IWindowOptions Build() => options;
+    public IGraphicsCreator Build() => options;
 }

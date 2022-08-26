@@ -14,7 +14,5 @@ class WindowCreator : WindowOptionsBase
 
         return graphics;
     }
-
-    public override PlotModel CreatePlotModel() => graphics.PlotModel;
 }
 
