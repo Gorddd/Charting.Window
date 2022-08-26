@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using OxyPlot;
+﻿using OxyPlot;
 using OxyPlot.Series;
 
 namespace Charting.Window.Graphics.WindowsForms;
@@ -7,6 +6,7 @@ namespace Charting.Window.Graphics.WindowsForms;
 class WinformsWindow : Form, IGraphics
 {
     private OxyPlot.WindowsForms.PlotView plotView = new OxyPlot.WindowsForms.PlotView();
+
     public PlotModel PlotModel
     {
         get => plotView.Model;
@@ -35,7 +35,6 @@ class WinformsWindow : Form, IGraphics
             .Max(series => series.Points.Last().X); //Getting last X coordinate among all graphs
 
         PlotModel.DefaultXAxis?.Zoom(lastX - VisiblePoints, lastX); // - 10 это нужно в дизайн билдере им указывать, чтобы мы понимали на скок хотим
-         //еще добавить максимум зума по оси y, также в design buildere
 
         plotView.Refresh();
     }

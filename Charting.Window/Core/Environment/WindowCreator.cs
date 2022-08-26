@@ -1,5 +1,4 @@
 ﻿using Charting.Window.Graphics;
-using OxyPlot;
 
 namespace Charting.Window.Core.Environment;
 
