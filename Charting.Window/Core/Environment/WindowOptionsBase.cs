@@ -10,18 +10,13 @@ abstract class WindowOptionsBase : IWindowOptions
     protected WindowOptionsBase(IGraphics graphics)
     {
         this.graphics = graphics;
+        this.graphics.PlotModel = new PlotModel();
     }
 
-    public PlotModel PlotModel { get; set; } = new PlotModel();
+    protected List<IDesignSetter> designOptions  = new List<IDesignSetter>();
 
-    public string? Title
-    {
-        get => PlotModel.Title;
-        set => PlotModel.Title = value;
-    }
-    public int VisiblePoints { get; set; } = 10;
-    public Color BackColor { get; set; }
-
+    public void AddDesignSetter(IDesignSetter designSetter) =>
+        designOptions.Add(designSetter);
 
     public abstract PlotModel CreatePlotModel();
     public abstract IGraphics CreateGraphics();

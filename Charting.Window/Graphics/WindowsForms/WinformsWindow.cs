@@ -12,11 +12,13 @@ class WinformsWindow : Form, IGraphics
         get => plotView.Model;
         set => plotView.Model = value;
     }
-    public Color Color
+
+    public new Color BackColor
     {
         get => plotView.BackColor;
         set => plotView.BackColor = value;
     }
+
     public int VisiblePoints { get; set; }
     
     public WinformsWindow()

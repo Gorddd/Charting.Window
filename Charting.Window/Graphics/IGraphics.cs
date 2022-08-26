@@ -6,7 +6,7 @@ public interface IGraphics
 {
     PlotModel PlotModel { get; set; }
     int VisiblePoints { get; set; }
-    Color Color { get; set; }
+    Color BackColor { get; set; }
     void Start();
     void Stop();
     void UpdateArea();

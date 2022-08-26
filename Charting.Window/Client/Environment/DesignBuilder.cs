@@ -10,17 +10,17 @@ public class DesignBuilder
 
     public DesignBuilder SetTitle(string title) 
     {
-        options.Title = title;
+        options.AddDesignSetter(new TitleSetter(title));
         return this;
     }
     public DesignBuilder SetVisiblePoints(int amount)
     {
-        options.VisiblePoints = amount;
+        options.AddDesignSetter(new VisiblePointsSetter(amount));
         return this;
     }
     public DesignBuilder SetBackColor(Color color)
     {
-        options.BackColor = color;
+        options.AddDesignSetter(new BackColorSetter(color));
         return this;
     }
 

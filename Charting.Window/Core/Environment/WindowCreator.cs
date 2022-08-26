@@ -9,14 +9,12 @@ class WindowCreator : WindowOptionsBase
 
     public override IGraphics CreateGraphics()
     {
-        //установка настроек окна и тд, та же -10 из UPdate
-
-        graphics.VisiblePoints = VisiblePoints;
-        graphics.Color = BackColor;
+        foreach (var option in designOptions)
+            option.SetOption(graphics);
 
         return graphics;
     }
 
-    public override PlotModel CreatePlotModel() => PlotModel;
+    public override PlotModel CreatePlotModel() => graphics.PlotModel;
 }
 
