@@ -25,5 +25,23 @@ public class DesignBuilder
         return this;
     }
 
+    public DesignBuilder SetBorderColor(Color color)
+    {
+        options.AddDesignSetter(new BorderColorSetter(color));
+        return this;
+    }
+
+    public DesignBuilder SetTextColor(Color color)
+    {
+        options.AddDesignSetter(new TextColorSetter(color));
+        return this;
+    }
+
+    public DesignBuilder SetTitleColor(Color color)
+    {
+        options.AddDesignSetter(new TitleColorSetter(color));
+        return this;
+    }
+
     public IGraphicsCreator Build() => options;
 }

@@ -19,8 +19,32 @@ class WinformsWindow : Form, IGraphics
         set => plotView.BackColor = value;
     }
 
+    public Color BorderColor
+    {
+        set
+        {
+            PlotModel.PlotAreaBorderColor = OxyColor.FromRgb(value.R, value.G, value.B);
+        }
+    }
+
+    public Color TextColor
+    {
+        set
+        {
+            PlotModel.TextColor = OxyColor.FromRgb(value.R, value.G, value.B);
+        }
+    }
+
+    public Color TitleColor
+    {
+        set
+        {
+            PlotModel.TitleColor = OxyColor.FromRgb(value.R, value.G, value.B);
+        }
+    }
+
     public int VisiblePoints { get; set; }
-    
+
     public WinformsWindow()
     {
         InitializeComponent();
@@ -34,7 +58,7 @@ class WinformsWindow : Form, IGraphics
             .Select(series => (FunctionSeries)series)
             .Max(series => series.Points.Last().X); //Getting last X coordinate among all graphs
 
-        PlotModel.DefaultXAxis?.Zoom(lastX - VisiblePoints, lastX); // - 10 это нужно в дизайн билдере им указывать, чтобы мы понимали на скок хотим
+        PlotModel.DefaultXAxis?.Zoom(lastX - VisiblePoints, lastX);
 
         plotView.Refresh();
     }
