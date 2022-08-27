@@ -14,7 +14,7 @@ using Charting.Window.Environment;
 
 ///*------------------Using GraphBuilder--------------------*/
 
-//function 
+//function
 //var builder = new GraphBuilder();
 //builder
 //    .SetFunction(Math.Cos)
@@ -50,7 +50,7 @@ using Charting.Window.Environment;
 
 /*--------------------Live charting-----------------------*/
 
-var liveBuilder = new GraphBuilder();
+var liveBuilder = new GraphBuilder().SetColor(Color.Yellow);
 var liveDesignBuilder = new DesignBuilder().SetVisiblePoints(25)
     .SetBackColor(Color.Black)
     .SetBorderColor(Color.Red)

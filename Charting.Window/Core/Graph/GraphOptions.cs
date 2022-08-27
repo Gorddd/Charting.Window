@@ -1,4 +1,5 @@
-﻿using OxyPlot.Series;
+﻿using OxyPlot;
+using OxyPlot.Series;
 
 namespace Charting.Window.Core.Graph;
 
@@ -19,6 +20,8 @@ class GraphOptions : GraphOptionsBase
 
         series.Title = Name;
         series.InterpolationAlgorithm = InterpolationAlgorithm;
+        if (GraphColor != default)
+        series.Color = OxyColor.FromRgb(GraphColor.R, GraphColor.G, GraphColor.B);
 
         return series;
     }

@@ -51,7 +51,9 @@ class WinformsWindow : Form, IGraphics
     }
 
     public void Start() => ShowDialog();
+
     public void Stop() => Hide();
+
     public void UpdateArea()
     {
         var lastX = PlotModel.Series

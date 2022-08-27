@@ -69,6 +69,11 @@ public class GraphBuilder
         graphOptions.Name = name;
         return this;
     }
+    public GraphBuilder SetColor(Color color)
+    {
+        graphOptions.GraphColor = color;
+        return this;
+    }
 
     public ISeriesItemCreator Build() => graphOptions;
 }

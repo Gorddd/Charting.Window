@@ -13,6 +13,8 @@ abstract class GraphOptionsBase : ISeriesItemCreator
     public double X1 { get; set; } = 1000;
     public double Dx { get; set; } = 0.01;
 
+    public Color GraphColor { get; set; }
+
     public abstract Series CreateSeries();
     public abstract void UpdateSeries(Series series);
 }
