@@ -1,12 +1,11 @@
 ﻿using Charting.Window.Core;
-using Charting.Window.Environment;
-using Charting.Window.Graphics.WindowsForms;
 
 namespace Charting.Window;
 
-public class GraphCreator : GraphMaker
+public class GraphCreator
 {
     private IConnector connector;
+
     public bool IsActive => connector.IsActive;
 
     public GraphCreator(GraphBuilder graphBuilder, DesignBuilder? designBuilder = null)
@@ -35,8 +34,11 @@ public class GraphCreator : GraphMaker
     }
 
     public async Task Start() => await connector.StartCharting();
+
     public void Stop() => connector.StopCharting();
+
     public void Update() => connector.Update();
+
 
 
     public static async Task Start(Func<double, double> func, string? title = null)
@@ -50,6 +52,7 @@ public class GraphCreator : GraphMaker
 
         await session.StartCharting();
     }
+
     public static async Task Start(IEnumerable<(double, double)> points,
         InterpolationAlgorithm? interpolationAlgorithm = null,
         string? title = null)

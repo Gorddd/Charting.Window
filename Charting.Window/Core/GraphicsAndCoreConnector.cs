@@ -1,7 +1,5 @@
 ﻿using Charting.Window.Graphics;
 using OxyPlot.Series;
-using OxyPlot;
-using Charting.Window.Core.Environment;
 
 namespace Charting.Window.Core;
 

@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using Charting.Window;
-using Charting.Window.Environment;
 
 ///*--------------------Fast charting-----------------------*/
 
@@ -50,26 +49,35 @@ using Charting.Window.Environment;
 
 /*--------------------Live charting-----------------------*/
 
-var liveBuilder = new GraphBuilder().SetColor(Color.Yellow);
-var liveDesignBuilder = new DesignBuilder().SetVisiblePoints(25)
-    .SetBackColor(Color.Black)
-    .SetBorderColor(Color.Red)
-    .SetTextColor(Color.Red)
-    .SetTitle("Hello friend")
-    .SetTitleColor(Color.Red);
-var liveGraph = new GraphCreator(liveBuilder, liveDesignBuilder);
-liveGraph.Start();
+//var liveBuilder = new GraphBuilder().SetColor(Color.Yellow);
+//var liveDesignBuilder = new DesignBuilder().SetVisiblePoints(25)
+//    .SetBackColor(Color.Black)
+//    .SetBorderColor(Color.Red)
+//    .SetTextColor(Color.Red)
+//    .SetTitle("Hello friend")
+//    .SetTitleColor(Color.Red);
+//var liveGraph = new GraphCreator(liveBuilder, liveDesignBuilder);
+//liveGraph.Start();
 
-var rand = new Random();
-for (int i = 0; i < 100; i++)
-{
-    liveBuilder.AddPoint((i, 100 * rand.NextDouble()));
-    liveGraph.Update();
+//var rand = new Random();
+//for (int i = 0; i < 100; i++)
+//{
+//    liveBuilder.AddPoint((i, 100 * rand.NextDouble()));
+//    liveGraph.Update();
 
-    Thread.Sleep(100);
-}
+//    Thread.Sleep(100);
+//}
 /*========================================================*/
 
 //desingBUilder делай чтоб зум могли менять сами, ну и graphbuilder тоже там цвета менять и тд
+
+var graphBuilder = new GraphBuilder().SetFunction(Math.Sqrt);
+var designBuilder = new DesignBuilder().SetTitle("Sqrt(x)");
+var graphCreator = new GraphCreator(graphBuilder, designBuilder);
+graphCreator.Start();
+Console.ReadKey();
+graphCreator.Stop();
+Console.ReadKey();
+graphCreator.Start();
 
 Console.ReadKey();

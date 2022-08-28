@@ -1,9 +1,8 @@
-﻿using Charting.Window.Core;
-using Charting.Window.Core.Environment;
+﻿using Charting.Window.Core.Environment;
 using Charting.Window.Graphics;
 using Charting.Window.Graphics.WindowsForms;
 
-namespace Charting.Window.Environment;
+namespace Charting.Window;
 
 public class DesignBuilder
 {

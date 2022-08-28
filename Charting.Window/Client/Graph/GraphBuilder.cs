@@ -1,6 +1,5 @@
 ﻿using Charting.Window.Core;
 using Charting.Window.Core.Graph;
-using OxyPlot.Series;
 using OxyPlot;
 using Charting.Window.Core.Extensions;
 
