@@ -4,6 +4,10 @@ using Charting.Window.Graphics.WindowsForms;
 
 namespace Charting.Window;
 
+
+/// <summary>
+/// Window options class
+/// </summary>
 public class DesignBuilder
 {
     private WindowOptionsBase options = new WindowCreator(new WinformsWindow());

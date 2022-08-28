@@ -5,6 +5,9 @@ using Charting.Window.Core.Extensions;
 
 namespace Charting.Window;
 
+/// <summary>
+/// Graph options class
+/// </summary>
 public class GraphBuilder
 {
     private GraphOptionsBase graphOptions = new GraphOptions();
