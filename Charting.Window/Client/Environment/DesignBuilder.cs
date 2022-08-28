@@ -13,11 +13,13 @@ public class DesignBuilder
         options.AddDesignSetter(new TitleSetter(title));
         return this;
     }
+
     public DesignBuilder SetVisiblePoints(int amount)
     {
         options.AddDesignSetter(new VisiblePointsSetter(amount));
         return this;
     }
+
     public DesignBuilder SetBackColor(Color color)
     {
         options.AddDesignSetter(new BackColorSetter(color));
@@ -39,6 +41,12 @@ public class DesignBuilder
     public DesignBuilder SetTitleColor(Color color)
     {
         options.AddDesignSetter(new TitleColorSetter(color));
+        return this;
+    }
+
+    public DesignBuilder SetWindowName(string name)
+    {
+        options.AddDesignSetter(new WindowNameSetter(name));
         return this;
     }
 

@@ -6,6 +6,8 @@ public interface IGraphics
 {
     PlotModel PlotModel { get; set; }
 
+    string WindowName { get; set; }
+
     int VisiblePoints { get; set; }
 
     Color BackColor { get; set; }
