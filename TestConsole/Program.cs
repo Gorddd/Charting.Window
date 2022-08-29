@@ -71,6 +71,7 @@ for (int i = 0; i < 100; i++)
 
     Thread.Sleep(100);
 }
+
 /*========================================================*/
 
 Console.ReadKey(); //Don't forget about this if you don't use await
