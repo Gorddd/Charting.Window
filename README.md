@@ -12,7 +12,6 @@
 
 <h2>How to start</h2>
 
----
 
 1. [Download .dll](https://github.com/Gorddd/Charting.Window/releases/tag/v1.0)
 2. Create new project
