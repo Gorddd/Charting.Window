@@ -43,7 +43,7 @@
     ```
     dotnet build
     ```
-5. Write code and run the project
+5. Write [code](ConsoleExample/Program.cs) and run the project
     ```
     dotnet run
     ```
